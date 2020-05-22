@@ -1,0 +1,5 @@
+.vscode
+*.log
+node_modules
+dist
+src/server/config/keys_dev.js
