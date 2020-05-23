@@ -33,6 +33,7 @@ function Login(props) {
       setErrors({});
       setEmail("");
       setPassword("");
+      props.history.push("/dashboard");
     } catch (e) {
       setErrors(e.response.data);
     }

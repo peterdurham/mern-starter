@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -5,4 +6,33 @@
 }
 body {
   font-family: -apple-system, sans-serif;
+  font-family: "Chelsea Market", cursive;
+}
+a {
+  text-decoration: none;
+  color: #000;
+}
+#container {
+  width: 840px;
+  margin: 0 auto;
+}
+
+#nav {
+  display: flex;
+  justify-content: space-between;
+  margin: 16px 0;
+}
+
+nav#nav-links {
+  display: flex;
+  list-style: none;
+}
+nav#nav-links li {
+  margin: 0 16px;
+}
+nav#nav-links li a {
+  color: blue;
+}
+nav#nav-links li a:hover {
+  color: black;
 }

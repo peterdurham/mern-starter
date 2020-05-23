@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function Posts() {
+function Posts(props) {
   const [posts, setPosts] = useState({ data: [], isLoaded: false });
   const [errors, setErrors] = useState({});
   const [name, setName] = useState("");
@@ -9,6 +9,7 @@ function Posts() {
 
   useEffect(() => {
     fetchData();
+    console.log(props.history);
   }, []);
 
   async function fetchData() {
@@ -29,10 +30,10 @@ function Posts() {
       const data = await response.data;
 
       setErrors({});
-      setName("");
       setMessage("");
       fetchData();
     } catch (e) {
+      console.log(e.response);
       setErrors(e.response.data);
     }
   };
@@ -64,6 +65,9 @@ function Posts() {
             <span style={{ color: "red" }}>{errors.message}</span>
           )}
         </div>
+        {errors === "Unauthorized" && (
+          <div style={{ color: "#b90e0a" }}>Please sign up for an account</div>
+        )}
         <button type="submit">Send</button>
       </form>
       {!posts.isLoaded ? (

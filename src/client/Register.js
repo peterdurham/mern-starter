@@ -23,6 +23,7 @@ function Register(props) {
       setErrors({});
       setEmail("");
       setPassword("");
+      props.history.push("/");
     } catch (e) {
       setErrors(e.response.data);
     }
@@ -41,7 +42,9 @@ function Register(props) {
             onChange={(e) => setEmail(e.target.value)}
             value={email}
           />
-          {errors.email && <span style={{ color: "red" }}>{errors.email}</span>}
+          {errors.email && (
+            <span style={{ color: "#b90e0a" }}>{errors.email}</span>
+          )}
         </div>
         <div>
           <label htmlFor="password">Password:</label>
@@ -53,7 +56,7 @@ function Register(props) {
             value={password}
           />
           {errors.password && (
-            <span style={{ color: "red" }}>{errors.password}</span>
+            <span style={{ color: "#b90e0a" }}>{errors.password}</span>
           )}
         </div>
         <button type="submit">Register</button>
