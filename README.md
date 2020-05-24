@@ -6,11 +6,10 @@ This app is deployed [here](https://peaceful-earth-12146.herokuapp.com/) (heroku
 
 Features:
 
-- Node Express backend server connected to MongoDB
-- Webpack React frontend client served by backend
-- Authentication (register, login, logout)
-- Messages example: create (private), read (public)
-- Webpack and Express mostly configured for dev + prod
+- Node **Express** server
+- React **Webpack** client
+- **Authentication** (register, login, logout)
+- Messages example: **Create** (private), **Read** (public)
 
 ## Instructions
 
@@ -39,7 +38,7 @@ Start the project on port's 3000 and 8080 with
 npm run dev
 ```
 
-## Heroku Deploy
+## Heroku Setup
 
 Once you've signed up for **Heroku**, login using
 
@@ -53,8 +52,35 @@ Next, create a new project with
 heroku create
 ```
 
-Head to this project on the Heroku site under **Settings** >> **Reveal Config Vars**. Add the following variables
+Visit this project on the Heroku platform and head to the **Settings** >> **Reveal Config Vars**. Add the following variables
 
-- **MONGO_URI**: mongodb connection string
+- **MONGO_URI**: your mongodb connection string
 - **NPM_CONFIG_PRODUCTION**: false
 - **SECRET_OR_KEY**: secret
+
+## Heroku Deploy
+
+The project is ready to deploy with
+
+```bash
+git init
+git add .
+git commit -m "initial commit"
+git push heroku master
+```
+
+## Tools
+
+This project:
+
+- was built using **Node** for the server
+- uses **Express** for backend routing
+- uses **Mongoose** for database connection
+- uses **Passport** for Auth/login
+- uses **Bcryptjs** for password cryptography
+- uses **Validator** for serverside validation
+- was built using **React** for the client
+- uses **Webpack** for bundling files and assets
+- uses **React Router** for frontend routing
+- uses **Babel** for transpiling React code
+- uses **ESLint** for lint checking
