@@ -5,11 +5,12 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
-    "start": "npm run build && node src/server/index.js",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
     "server": "nodemon src/server/index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-prebuild": "npm install --dev"
+    "start": "node src/server/index.js",
+    "heroku-prebuild": "npm install --dev",
+    "heroku-postbuild": "npm install && npm run build"
   },
   "keywords": [],
   "author": "Peter Durham",
