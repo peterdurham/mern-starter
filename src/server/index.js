@@ -18,8 +18,6 @@ mongoose
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log(err));
 
-app.use(express.static("dist"));
-
 // passport middleware
 app.use(passport.initialize());
 
@@ -33,6 +31,11 @@ app.use("/api/posts", posts);
 app.get("/api/getUsername", (req, res) =>
   res.send({ username: os.userInfo().username })
 );
+
+app.use(express.static("dist"));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist"));
+});
 
 app.listen(process.env.PORT || 8080, () =>
   console.log(`Listening on port ${process.env.PORT || 8080}!`)
