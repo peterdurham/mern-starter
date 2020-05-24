@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function Posts(props) {
+function Posts() {
   const [posts, setPosts] = useState({ data: [], isLoaded: false });
   const [errors, setErrors] = useState({});
   const [name, setName] = useState("");
@@ -9,7 +9,6 @@ function Posts(props) {
 
   useEffect(() => {
     fetchData();
-    console.log(props.history);
   }, []);
 
   async function fetchData() {
@@ -26,20 +25,18 @@ function Posts(props) {
     };
 
     try {
-      const response = await axios.post("/api/posts", postData);
-      const data = await response.data;
-
+      await axios.post("/api/posts", postData);
       setErrors({});
       setMessage("");
       fetchData();
     } catch (e) {
-      console.log(e.response);
       setErrors(e.response.data);
     }
   };
 
   return (
     <div>
+      <h2>Message Board</h2>
       <form onSubmit={onSubmit}>
         <div>
           <label htmlFor="name">Name:</label>
@@ -50,11 +47,11 @@ function Posts(props) {
             onChange={(e) => setName(e.target.value)}
             value={name}
           />
-          {errors.name && <span style={{ color: "red" }}>{errors.name}</span>}
+          {errors.name && <span className="red">{errors.name}</span>}
         </div>
         <div>
           <label htmlFor="text">Message:</label>
-          <input
+          <textarea
             type="text"
             name="message"
             placeholder="Enter your message"
@@ -66,7 +63,7 @@ function Posts(props) {
           )}
         </div>
         {errors === "Unauthorized" && (
-          <div style={{ color: "#b90e0a" }}>Please sign up for an account</div>
+          <div className="red">Please sign up for an account</div>
         )}
         <button type="submit">Send</button>
       </form>
@@ -74,14 +71,14 @@ function Posts(props) {
         <div>...loading</div>
       ) : (
         <div>
-          {posts.data.map((post) => (
-            <div key={post._id}>
-              <span style={{ width: "100px", fontWeight: "700" }}>
-                {post.name}
-              </span>
-              : {post.message}
-            </div>
-          ))}
+          {posts.data
+            .filter((_, index, array) => index > array.length - 10)
+            .reverse()
+            .map((post) => (
+              <div key={post._id}>
+                <strong>{post.name}</strong>: {post.message}
+              </div>
+            ))}
         </div>
       )}
     </div>

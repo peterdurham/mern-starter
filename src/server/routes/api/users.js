@@ -4,8 +4,8 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
-const keys = require("../../config/keys");
 
+const keys = require("../../config/keys");
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
 const User = require("../../models/User");
@@ -55,10 +55,8 @@ router.post("/register", (req, res) => {
 // @desc login user /returning token
 // @access public
 router.post("/login", (req, res) => {
-  console.log("LOGGING IN");
   const { errors, isValid } = validateLoginInput(req.body);
 
-  // Check validation
   if (!isValid) {
     return res.status(400).json(errors);
   }
@@ -66,22 +64,16 @@ router.post("/login", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
-  // Find user by email
   User.findOne({ email }).then((user) => {
-    // check for user
     if (!user) {
       errors.email = "User not found";
       return res.status(404).json(errors);
     }
 
-    // check password
     bcrypt.compare(password, user.password).then((isMatch) => {
       if (isMatch) {
-        // User matched
-
         const payload = { id: user.id, name: user.name };
 
-        // Sign Token
         jwt.sign(
           payload,
           keys.secretOrKey,
@@ -100,20 +92,5 @@ router.post("/login", (req, res) => {
     });
   });
 });
-
-// @route  GET api/users/current
-// @desc   return current user
-// @access private
-router.get(
-  "/current",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    res.json({
-      id: req.user.id,
-      name: req.user.name,
-      email: req.user.email,
-    });
-  }
-);
 
 module.exports = router;

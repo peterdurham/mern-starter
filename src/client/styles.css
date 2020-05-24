@@ -12,6 +12,9 @@ a {
   text-decoration: none;
   color: #000;
 }
+h3 {
+  margin-bottom: 20px;
+}
 #container {
   width: 840px;
   margin: 0 auto;
@@ -20,19 +23,35 @@ a {
 #nav {
   display: flex;
   justify-content: space-between;
-  margin: 16px 0;
+  margin: 16px 0 56px 0;
 }
 
-nav#nav-links {
+#nav-links {
   display: flex;
   list-style: none;
 }
-nav#nav-links li {
+#nav-links li {
   margin: 0 16px;
 }
-nav#nav-links li a {
+#nav-links li a {
   color: blue;
 }
-nav#nav-links li a:hover {
+#nav-links li a:hover {
   color: black;
+}
+
+#logout {
+  color: blue;
+  background: #fff;
+  border: none;
+  font-family: "Chelsea Market", cursive;
+  cursor: pointer;
+  font-size: 16px;
+}
+#logout:hover {
+  color: black;
+}
+
+.red {
+  color: #b90e0a;
 }
