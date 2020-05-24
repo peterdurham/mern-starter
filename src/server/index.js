@@ -18,13 +18,10 @@ mongoose
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log(err));
 
-// passport middleware
 app.use(passport.initialize());
 
-// Passport Config
 require("./config/passport")(passport);
 
-// use routes
 app.use("/api/users", users);
 app.use("/api/posts", posts);
 
