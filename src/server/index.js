@@ -32,7 +32,7 @@ app.get("/api/getUsername", (req, res) =>
   res.send({ username: os.userInfo().username })
 );
 
-app.use(express.static("dist"));
+app.use(express.static(path.join(__dirname, "dist")));
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "dist"));
 });
