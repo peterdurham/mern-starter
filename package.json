@@ -8,8 +8,7 @@
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
     "server": "nodemon src/server/index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "start": "node src/server/index.js",
-    "heroku-postbuild": "webpack --config webpack.config.js"
+    "start": "node src/server/index.js"
   },
   "keywords": [],
   "author": "Peter Durham",
