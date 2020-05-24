@@ -31,11 +31,12 @@ app.use("/api/posts", posts);
 app.get("/api/getUsername", (req, res) =>
   res.send({ username: os.userInfo().username })
 );
+console.log(__dirname, "DIRNAME");
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "dist")));
+  app.use(express.static(path.resolve(__dirname, "..", "dist")));
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "dist/index.html"));
+    res.sendFile(path.resolve(__dirname, "..", "dist/index.html"));
   });
 }
 
