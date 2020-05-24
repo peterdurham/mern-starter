@@ -19,6 +19,7 @@ mongoose
   .catch((err) => console.log(err));
 
 app.use(express.static("dist"));
+
 // passport middleware
 app.use(passport.initialize());
 
